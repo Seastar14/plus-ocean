@@ -1,0 +1,20 @@
+# composeバージョンの指定
+version: "3"
+
+volumes:
+  vue-cli-node-volume:
+
+services:
+  front:
+    image: vuecli
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+    container_name: front
+    ports:
+      - "18080:8080"
+    volumes:
+      - vue-cli-node-volume:/front/node_modules
+      - ./frontend:/front/
+    stdin_open: true
+    tty: true
